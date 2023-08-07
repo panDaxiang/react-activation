@@ -19,6 +19,7 @@ import React, { Component, Suspense, Fragment } from 'react'
 //   return <Fragment>{children}</Fragment>
 // }
 
+/** Suspender组件处理freeze存在或者promiseCache.promise不存在的渲染终止 */
 class Suspender extends Component {
   promiseCache = {}
   render() {

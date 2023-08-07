@@ -18,7 +18,9 @@ import {
 
 import { AliveNodeConsumer, aliveNodeContext } from './context'
 
+/** 生命周期-激活后 */
 export const LIFECYCLE_ACTIVATE = 'componentDidActivate'
+/** 生命周期-由激活变为非激活状态 */
 export const LIFECYCLE_UNACTIVATE = 'componentWillUnactivate'
 
 export const withActivation = (WrappedComponent) => {

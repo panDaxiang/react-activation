@@ -47,13 +47,16 @@ class KeepAlive extends Component {
   }
   // 本段为 KeepAlive 更新隐患检测，通过检测 KeepAlive 瞬时更新次数来判断是否进入死循环，并在 update 中强制阻止更新
   updateTimes = 0
+
   errorTips = debounce(() => {
     const { name } = this.props
     console.error(getErrorTips(name))
   }, 100)
+
   releaseUpdateTimes = debounce(() => {
     this.updateTimes = 0
   }, 16)
+
   needForceStopUpdate = () => {
     const needForceStopUpdate = this.updateTimes > 64
 
@@ -70,6 +73,7 @@ class KeepAlive extends Component {
   id = null // 用作 Keeper 识别 KeepAlive
   isKeepAlive = true // 用作 Keeper 识别 KeepAlive
   cached = false
+
   constructor(props) {
     super(props)
     this.id = props.id
@@ -103,7 +107,7 @@ class KeepAlive extends Component {
     })
   }
 
-  // DOM 操作将实际内容插入占位元素
+  /** DOM 操作将实际内容插入占位元素 */
   inject = (didActivate = true) => {
     const { id, saveScrollPosition, _helpers } = this.props
     const cache = _helpers.getCache(id)
@@ -189,8 +193,7 @@ class KeepAlive extends Component {
     const { _helpers, id, children, ...rest } = this.props
 
     // 将 children 渲染至 AliveScopeProvider 中
-    _helpers
-      .keep(id, {
+    _helpers.keep(id, {
         children,
         getInstance: () => this,
         ...rest,
@@ -295,6 +298,7 @@ function SSRKeepAlive({ children }) {
     </div>
   )
 }
+
 
 export default isFunction(get(root, 'document.getElementById'))
   ? expandKeepAlive(withActivation(KeepAlive))

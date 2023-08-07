@@ -22,6 +22,7 @@ export default class AliveScope extends Component {
       this.updateCallbackList = []
     })
   }
+
   update = (id, params) =>
     new Promise((resolve) => {
       const keeper = this.keepers.get(id)
@@ -147,7 +148,7 @@ export default class AliveScope extends Component {
   getNode = (id) => this.nodes.get(id)
   getCachingNodes = () => [...this.nodes.values()]
 
-  // 静态化节点上下文内容，防止重复渲染
+  /** 静态化节点上下文内容，防止重复渲染 */
   helpers = {
     keep: this.keep,
     update: this.update,

@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+
 import React, { useState, useContext, useEffect } from 'react'
 import { run, debounce, isFunction } from 'szfe-tools'
 
@@ -10,6 +10,7 @@ import {
   AliveNodeProvider,
   AliveNodeConsumer,
 } from './reactContext'
+
 import {
   eventBus as fakeContextEventBus,
   FakeScopeProvider,
@@ -43,6 +44,7 @@ export const AliveScopeProvider = ({ children, ...props }) => (
     <FakeScopeProvider {...props}>{children}</FakeScopeProvider>
   </AliveScopeReactProvider>
 )
+
 export const AliveScopeConsumer = ({ children }) => (
   <AliveScopeReactConsumer>
     {(reactContext) =>
@@ -54,6 +56,7 @@ export const AliveScopeConsumer = ({ children }) => (
     }
   </AliveScopeReactConsumer>
 )
+
 export {
   aliveScopeContext,
   aliveNodeContext,

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { forwardRef, useContext } from 'react'
 import hoistStatics from 'hoist-non-react-statics'
 import { get, isFunction, isUndefined } from 'szfe-tools'
@@ -51,6 +50,8 @@ export const expandKeepAlive = (KeepAlive) => {
       </NodeKey>
     )
   }
+
+  /** hook环境下使用 */
   const HookExpand = ({ id: idPrefix, ...props }) =>
     renderContent({ idPrefix, helpers: useScopeContext(), props })
 
@@ -60,6 +61,7 @@ export const expandKeepAlive = (KeepAlive) => {
     </AliveScopeConsumer>
   )
 
+  /** 根据useContext判断是否是hook环境，hook下执行HookExpand */
   return isFunction(useContext) ? HookExpand : WithExpand
 }
 
